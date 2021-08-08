@@ -3,18 +3,24 @@
 #include<stdio.h>
 #include<conio.h>
 using namespace std;
-
 class node{
-	public:
-		int data;
-		node* next;
-		node(int val){
-			data=val;
-			next=NULL;
-		}
-};
+	int data;
+	node* next;
+	
+	
+}
 
-void insertEnd(node* &head, int val){
+class LinkedList : public node {
+	private:
+	node* head;
+	public:
+	LinkedList(int val){
+		head=new node;
+		head.data=val;
+		head.next=NULL;
+	}
+
+void insertEnd(int val){
 	node* n=new node(val);
 	if(head==NULL){
 		head=n;
@@ -27,13 +33,13 @@ void insertEnd(node* &head, int val){
 	temp->next=n;
 }
 
-void insertHead(node* &head , int val){
+void insertHead(int val){
 	node* n=new node(val);
 	n->next=head;
 	head=n;
 }
 
-void insertBetween(node* &head, int val, int key){
+void insertBetween(int val, int key){
 	node* n=new node(val);
 	int pos=1;
 	if(pos==key){
@@ -50,7 +56,7 @@ void insertBetween(node* &head, int val, int key){
 	
 }
 
-void display(node* head){
+void display(){
 	node* temp=head;
 	while(temp!=NULL){
 		cout<<temp->data<<" ";
@@ -71,14 +77,14 @@ bool search(node* head, int key){
 	return false;
 }
 
-void deleteHead(node* &head){
+void deleteHead(){
 	node* temp=head;
 	head=head->next;
 	delete temp;
 	
 }
 
-void deletes(node* &head, int val){
+void deletes(int val){
 	if(head==NULL){
 		return;
 	}
@@ -94,7 +100,7 @@ void deletes(node* &head, int val){
 	delete n;
 }
 
-void deleteBetween(node* &head, int key){
+void deleteBetween(int key){
 	if(key==1){
 		deleteHead(head);
 	}
@@ -106,11 +112,11 @@ void deleteBetween(node* &head, int key){
 	temp->next=temp->next->next;
 	delete n;
 }
+};
 
 int main()
 {
-	node*head=NULL;
-	insertEnd(head,1);
+	/*insertEnd(head,1);
 	insertEnd(head,2);
 	insertEnd(head,3);
 	insertBetween(head,7,2);
@@ -122,8 +128,10 @@ int main()
 	deleteHead(head);
 	display(head);
 	deleteBetween(head,2);
-	display(head);
-	
-	
+	display(head);*/
+	LinkedList obj(1);
+	obj.insertHead(10);
+	obj.insertEnd(99);
+	// CALL WHATEVER YOU LIKE
 	return 0;
 }
